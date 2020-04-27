@@ -7,8 +7,10 @@ from django.http import HttpResponse
 def home(request):
   return render(request, 'home.html')
 
-def home(request):
-  return render(request, 'home.html')
-
 def next(request):
   return render(request, 'next.html')
+
+def cats_index(request):
+  return render(request, 'cats/index.html')
+
+
