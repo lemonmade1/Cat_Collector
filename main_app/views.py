@@ -5,7 +5,10 @@ from django.http import HttpResponse
 
 # Define the home view
 def home(request):
-  return HttpResponse('<h1>Hello /ᐠ｡‸｡ᐟ\ﾉ</h1>')
+  return render(request, 'home.html')
+
+def home(request):
+  return render(request, 'home.html')
 
 def next(request):
-  return HttpResponse('<h1> Next Page </h1>')
+  return render(request, 'next.html')
