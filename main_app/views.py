@@ -1,8 +1,5 @@
 from django.shortcuts import render
 
-# Add the following import
-from django.http import HttpResponse
-
 class Cat:
   def __init__(self, name, breed, description, age):
     self.name = name
