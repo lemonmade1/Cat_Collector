@@ -4,18 +4,20 @@
 <h1>Cats Lists</h1>
 
 {% for cat in cats %}
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">{{ cat.name }}</span>
-    <p>Breed: {{ cat.breed }}</p>
-    <p>Description: {{ cat.description }}</p>
-    {% if cat.age > 0 %}
+<a href="{% url 'detail' cat.id %}">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ cat.name }}</span>
+      <p>Breed: {{ cat.breed }}</p>
+      <p>Description: {{ cat.description }}</p>
+      {% if cat.age > 0 %}
       <p>Age: {{ cat.age }}</p>
-    {% else %}
+      {% else %}
       <p>age: Kitten</p>
-    {% endif %}
+      {% endif %}
+    </div>
   </div>
-</div>
+</a>
 {% endfor %}
 
 {% endblock %}
