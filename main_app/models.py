@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
 
 # A tuple of 2-tuples
 MEALS = (
@@ -20,6 +21,9 @@ class Cat(models.Model):
 
   def get_absolute_url(self):
     return reverse('cats_detail', kwargs={ 'pk': self.id })
+
+  def fed_for_today(self):
+    return self.feeding_set.filter(date=date.today()).count() >= len(MEALS)
 
 # Add new Feeding model below Cat model
 class Feeding(models.Model):
