@@ -1,20 +1,7 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Cat
-
-# class Cat(models.Model):
-#   name = models.CharField(max_length=100)
-#   breed = models.CharField(max_length=100)
-#   description = models.TextField(max_length=250)
-#   age = models.IntegerField()
-
-# def __str__(self):
-#   return self.name
-
-# cats = [
-#   Cat('Lolo', 'Tabby', 'foul little demon', 3),
-#   Cat('Sachi', 'Tortoise Shell', 'Diluted Tortoise Shell', 0),
-#   Cat('Raven', 'Black Tripod', '3 legged cat', 4)
-# ]
 
 # Define the home view
 def home(request):
@@ -23,10 +10,23 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
-def cats_index(request):
-  cats = Cat.objects.all()
-  return render(request, 'cats/index.html', { 'cats': cats })
+class CatList(ListView):
+  model = Cat
 
-def cats_detail(request, cat_id):
-  cat = Cat.objects.get(id=cat_id)
-  return render(request, 'cats/detail.html', { 'cat': cat })
+  def get_queryset(self):
+    return Cat.objects.all()
+
+class CatDetail(DetailView):
+  model = Cat
+
+class CatCreate(CreateView):
+  model = Cat
+  fields = '__all__'  # edits all
+
+class CatUpdate(UpdateView):
+  model = Cat
+  fields = ['name', 'description', 'age']  # specific what to edit
+
+class CatDelete(DeleteView):
+  model = Cat
+  success_url = '/cats/'
